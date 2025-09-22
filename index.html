@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prakhar Sharma Portfolio</title>
+  <style>
+    /* Reset & base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Arial Black', Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.4;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+    input, textarea, select, button {
+      font-family: inherit;
+    }
+    /* Utility classes */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .bold {
+      font-weight: 900;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+    .small-text {
+      font-size: 0.875rem;
+      color: #ccc;
+    }
+    /* Header */
+    header {
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      background-color: #000;
+      z-index: 999;
+    }
+    header .logo {
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: 2px;
+      color: #fff;
+      user-select: none;
+    }
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+    }
+    nav ul li a {
+      color: #bbb;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #e91e63;
+    }
+    /* Hero Section */
+    #hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 60px 20px 80px;
+      gap: 50px;
+    }
+    #hero .text-content {
+      flex: 1 1 320px;
+      max-width: 550px;
+    }
+    #hero .text-content h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      font-weight: 900;
+      margin: 0 0 0.5rem;
+    }
+    #hero .text-content h2 {
+      font-weight: 300;
+      font-size: 1rem;
+      margin: 0 0 15px;
+      color: #aaa;
+      font-family: 'Arial', sans-serif;
+    }
+    #hero .text-content p {
+      max-width: 460px;
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+    #hero .buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    #hero .btn-primary,
+    #hero .btn-secondary {
+      font-weight: 900;
+      font-size: 0.825rem;
+      padding: 12px 22px;
+      border-radius: 3px;
+      border: 2px solid transparent;
+      user-select: none;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+    }
+    #hero .btn-primary {
+      background-color: #e91e63;
+      color: white;
+      border-color: #e91e63;
+    }
+    #hero .btn-primary:hover {
+      background-color: transparent;
+      color: #e91e63;
+    }
+    #hero .btn-secondary {
+      background-color: transparent;
+      color: #fff;
+      border-color: #fff;
+    }
+    #hero .btn-secondary:hover {
+      background-color: #e91e63;
+      border-color: #e91e63;
+      color: #fff;
+    }
+    #hero img {
+      width: 400px;
+      border-radius: 200px;
+      object-fit: cover;
+      filter: grayscale(100%);
+      user-select: none;
+    }
+    /* About Section */
+    #about {
+      padding: 60px 20px 80px;
+      border-top: 1px solid #222;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    #about .about-title {
+      flex: 1 1 150px;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 1.4px;
+      user-select: none;
+    }
+    #about .about-text {
+      flex: 3 1 500px;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #d0d0d0;
+      user-select: text;
+    }
+    #about .about-contact {
+      margin-top: 20px;
+      color: #888;
+      font-family: monospace;
+      background: #111;
+      padding: 10px 14px;
+      width: fit-content;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      user-select: text;
+    }
+    /* Expertise Section */
+    #expertise {
+      border-top: 1px solid #222;
+      padding: 60px 20px 80px;
+      text-align: center;
+    }
+    #expertise h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.1rem;
+    }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 25px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .expertise-item {
+      border: 1px solid #444;
+      padding: 25px;
+      text-align: left;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+    .expertise-item:hover {
+      border-color: #e91e63;
+    }
+    .expertise-item h3 {
+      font-weight: 900;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05rem;
+    }
+    .expertise-item p {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #bbb;
+      line-height: 1.4;
+      margin: 0;
+    }
+    /* Education Section */
+    #education {
+      max-width: 600px;
+      margin: 50px auto 0;
+      font-weight: 500;
+      color: #bbb;
+      line-height: 1.5;
+      font-size: 1rem;
+      letter-spacing: 0.04rem;
+    }
+    #education p {
+      margin: 10px 0;
+    }
+    /* Professional Journey Section */
+    #journey {
+      border-top: 1px solid #222;
+      padding: 60px 20px 80px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    #journey h2 {
+      font-weight: 900;
+      font-size: 2.75rem;
+      margin-bottom: 2rem;
+      user-select: none;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      border-left: 3px solid #333;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 17px;
+      width: 10px;
+      height: 100%;
+      background: transparent;
+    }
+    .journey-item {
+      position: relative;
+      padding: 20px 25px 25px 35px;
+      border: 1px solid #333;
+      margin-bottom: 40px;
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+    .journey-item:hover {
+      border-color: #e91e63;
+    }
+    .journey-item::before {
+      content: '';
+      position: absolute;
+      left: -26px;
+      top: 26px;
+      width: 14px;
+      height: 14px;
+      background-color: #e91e63;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #e91e63;
+    }
+    .journey-item h3 {
+      font-weight: 900;
+      font-size: 1.3rem;
+      margin: 0 0 8px;
+    }
+    .journey-item p {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.5;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .job-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .job-tag {
+      border: 1px solid #555;
+      padding: 5px 13px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 3px;
+      color: #aaa;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .journey-item:hover .job-tag {
+      color: #e91e63;
+      border-color: #e91e63;
+    }
+    /* Buttons inside journey */
+    .job-buttons {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .job-btn {
+      background-color: transparent;
+      border: 2px solid #e91e63;
+      color: #e91e63;
+      font-weight: 900;
+      font-size: 0.75rem;
+      padding: 6px 13px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.07rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: none;
+    }
+    .job-btn:hover {
+      background-color: #e91e63;
+      color: #000;
+    }
+    /* Let’s Connect Section */
+    #let-connect {
+      border-top: 1px solid #222;
+      padding: 60px 20px 80px;
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    #let-connect .title {
+      flex: 1 1 300px;
+      font-weight: 900;
+      font-size: 2.5rem;
+      user-select: none;
+    }
+    #let-connect .content {
+      flex: 2 1 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      font-weight: 500;
+      color: #ccc;
+    }
+    #let-connect .contact-info {
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: #999;
+      margin-bottom: 12px;
+      user-select: text;
+    }
+    #let-connect .btn-group {
+      margin-top: 15px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    #let-connect .btn-primary, #let-connect .btn-secondary {
+      font-weight: 900;
+      font-size: 0.85rem;
+      padding: 12px 22px;
+      border-radius: 3px;
+      user-select: none;
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      transition: all 0.3s ease;
+    }
+    #let-connect .btn-primary {
+      background-color: #e91e63;
+      border-color: #e91e63;
+      color: white;
+    }
+    #let-connect .btn-primary:hover {
+      background-color: transparent;
+      color: #e91e63;
+    }
+    #let-connect .btn-secondary {
+      background-color: transparent;
+      border-color: #fff;
+      color: #fff;
+    }
+    #let-connect .btn-secondary:hover {
+      background-color: #e91e63;
+      color: #fff;
+    }
+    /* Footer */
+    footer {
+      background: transparent;
+      border-top: 1px solid #222;
+      padding: 60px 20px 40px;
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      font-size: 0.9rem;
+    }
+    footer .footer-logo {
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 0.15rem;
+      user-select: none;
+      flex: 1 1 200px;
+    }
+    footer .footer-nav {
+      display: flex;
+      gap: 50px;
+      flex: 2 1 570px;
+      flex-wrap: wrap;
+      color: #888;
+    }
+    .footer-nav div {
+      min-width: 100px;
+    }
+    .footer-nav div h4 {
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      color: #bbb;
+      user-select: none;
+    }
+    .footer-nav div ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer-nav div ul li {
+      margin-bottom: 8px;
+    }
+    .footer-nav div ul li a {
+      color: #666;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: color 0.3s ease;
+    }
+    .footer-nav div ul li a:hover {
+      color: #e91e63;
+    }
+    /* Get In Touch Form Section */
+    #get-in-touch {
+      border-top: 1px solid #222;
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      padding: 40px 20px;
+    }
+    #get-in-touch h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+    #get-in-touch p {
+      color: #bbb;
+      font-weight: 500;
+      margin-bottom: 35px;
+      max-width: 700px;
+      user-select: text;
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 40px;
+      max-width: 900px;
+      margin: auto;
+      font-weight: 500;
+    }
+    form label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    form input[type="text"],
+    form input[type="email"],
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 4px;
+      border: 1px solid #444;
+      background: #111;
+      color: #eee;
+      font-size: 1rem;
+      resize: vertical;
+      font-weight: 500;
+    }
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #666;
+    }
+    form textarea {
+      height: 110px;
+    }
+    form select {
+      background-color: #111;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #e91e63 50%),
+        linear-gradient(135deg, #e91e63 50%, transparent 50%);
+      background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px);
+      background-size: 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+    form .full-width {
+      grid-column: 1 / -1;
+    }
+    .checkbox-group {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 400;
+      user-select: none;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #e91e63;
+      cursor: pointer;
+    }
+    .submit-btn {
+      grid-column: 1 / -1;
+      width: 160px;
+      padding: 12px 0;
+      font-size: 0.9rem;
+      font-weight: 900;
+      border-radius: 3px;
+      border: 2px solid #e91e63;
+      background-color: transparent;
+      color: #e91e63;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      justify-self: start;
+    }
+    .submit-btn:hover {
+      background-color: #e91e63;
+      color: #000;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      #hero {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #hero img {
+        width: 100%;
+        max-width: 350px;
+        margin-top: 35px;
+        filter: grayscale(80%);
+      }
+      form {
+        grid-template-columns: 1fr;
+      }
+      #let-connect {
+        flex-direction: column;
+      }
+      #let-connect .content {
+        max-width: 100%;
+      }
+      footer {
+        flex-direction: column;
+        gap: 20px;
+      }
+      footer .footer-nav {
+        flex-wrap: wrap;
+        gap: 40px 25px;
+      }
+      footer .small-text {
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+        order: 2;
+        color: #666;
+        font-size: 0.8rem;
+        user-select: none;
+        
+      }
+
+
+
+      .expertise-grid {
+        grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      }
+      #about {
+        flex-direction: column;
+      }
+      #about .about-title {
+        font-size: 2.75rem;
+      }
+    }
+    @media (max-width: 400px) {
+      #hero .text-content h1 {
+        font-size: 2.5rem;
+      }
+      #expertise h2,
+      #journey h2,
+      #let-connect .title,
+      #get-in-touch h2 {
+        font-size: 2rem;
+      }
+      #get-in-touch {
+        padding: 40px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="logo">PRAKHAR SHARMA</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#expertise">EXPERTISE</a></li>
+        <li><a href="#journey">EXPERIENCE</a></li>
+        <li><a href="#let-connect">CONTACT</a></li>
+      </ul>
+    </nav>
+    <div title="Call Prakhar" style="color:#e91e63; font-weight: 900; cursor:pointer; font-size:1.1rem;">&#128222;</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="container">
+    <div class="text-content" role="banner">
+      <h1>PRAKHAR<br />SHARMA</h1>
+      <h2>Full Stack Development (MERN Stack) // Data Analysis & Visualization</h2>
+      <p>- Proficient in full-stack web development using React, Node.js, and MongoDB.<br />- Data-driven decision-making using Excel, Tableau, and Power BI</p>
+      <div class="buttons">
+        <button class="btn-primary" aria-label="Hire Me">HIRE ME NOW</button>
+        <button class="btn-secondary" aria-label="Download Resume">DOWNLOAD RESUME</button>
+      </div>
+    </div>
+    <img src="items/WhatsApp Image 2025-09-21 at 01.15.35_d80980b9.jpg" alt="Prakhar Sharma Portrait" />
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="container">
+    <h2 class="about-title">ABOUT</h2>
+    <div class="about-text">
+      <p>I’m Prakhar Sharma, a versatile digital innovator specializing in Full Stack Development (MERN Stack), AI/ML Development, Data Analysis, and Digital Marketing Strategy. I build scalable web applications, uncover actionable insights from complex data, and craft intelligent solutions that blend creativity with technology. Passionate about problem-solving and emerging tech, I aim to deliver projects that make an impact and drive growth.</p>
+
+      <p class="about-contact" aria-label="Email Address">Email: <a href="mailto:prakharsharmawork1@gmail.com" style="color:#e91e63;">prakharsharmawork1@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section id="expertise">
+    <h2>EXPERTISE</h2>
+    <div class="expertise-grid container">
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise1">
+        <h3 id="expertise1">DIGITAL INNOVATION & TECH STRATEGY</h3>
+        <p>You blend creativity with technology to solve real-world problems, aligning technical solutions with business goals.</p>
+      </article>
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise2">
+        <h3 id="expertise2">AI/ML DEVELOPMENT</h3>
+        <p>Proficient in Python, NLP, and deep learning algorithms for AI model development and deployment.</p>
+      </article>
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise3">
+        <h3 id="expertise3">CODING & TECH EXPLORATION</h3>
+        <p>Hands-on experience with cutting-edge technologies to develop scalable applications and tools.</p>
+      </article>
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise4">
+        <h3 id="expertise4">ACCOUNT MANAGEMENT</h3>
+        <p>Conceptualizing and executing business operations and customer partnerships.</p>
+      </article>
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise5">
+        <h3 id="expertise5">DATA ANALYSIS</h3>
+        <p>Conducting analysis for behavioral and customer insights to improve company operations.</p>
+      </article>
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise6">
+        <h3 id="expertise6">DATA SCIENCE</h3>
+        <p>Skilled in analyzing data, building models, and extracting insights using Python, SQL, and machine learning tools.</p>
+      </article>
+      <article class="expertise-item" tabindex="0" role="region" aria-labelledby="expertise7" style="grid-column: span 2;">
+        <h3 id="expertise7">FULL STACK DEVELOPMENT (MEAN STACK)</h3>
+        <p>Later I did full stack development, developed real-time apps using Node.js, MongoDB, Express.js & Angular/React.</p>
+      </article>
+    </div>
+
+    <section id="education" aria-label="Education" class="container" style="font-size: larger;">
+      <p><strong>EDUCATION</strong></p>
+      <p><strong>BCA in AI/ML</strong><br />Maharishi University (Expected, 2027)</p>
+      <!-- <p><strong>Freedom Employability Academy Program</strong><br />Professional Develop and Certification</p> -->
+      <p><strong>ICSE Academic Foundation</strong><br />Secondary Education Excellence</p>
+    </section>
+  </section>
+
+  <!-- Professional Journey Section -->
+  <section id="journey" class="container" aria-label="Professional Journey">
+    <h2>PROFESSIONAL JOURNEY</h2>
+    <div class="timeline">
+
+      <article class="journey-item" tabindex="0" aria-labelledby="job1title">
+        <h3 id="job1title">FULL STACK DEVELOPMENT INTERNSHIP</h3>
+        <p>Tech Internship Program: Interned as Full stack developer creating features using React.js and Node.js technologies, database management, and end-to-end application development. Adhering alongside agile project and using cutting-edge frameworks and methodologies.</p>
+        <div class="job-tags">
+          <div class="job-tag">STACK</div>
+          <div class="job-tag">FRONTEND</div>
+          <div class="job-tag">BACKEND</div>
+          <div class="job-tag">APPLICATION</div>
+        </div>
+      </article>
+
+      <article class="journey-item" tabindex="0" aria-labelledby="job2title">
+        <h3 id="job2title">DIGITAL MARKETING ACCOUNT HANDLER</h3>
+        <p>Marketing & Solution Agency: Managing client portfolios, developing comprehensive marketing strategies, and achieving outstanding results. Liaison for social media and business audience engagement, handling brand communications.</p>
+        <div class="job-tags">
+          <div class="job-tag">ACCOUNT MANAGEMENT</div>
+          <div class="job-tag">DIGITAL MARKETING</div>
+          <div class="job-tag">CLIENT MANAGEMENT</div>
+          <div class="job-tag">SOCIAL MEDIA</div>
+        </div>
+      </article>
+
+      <article class="journey-item" tabindex="0" aria-labelledby="job3title">
+        <h3 id="job3title">ADVANCED STUDIES PROGRAM</h3>
+        <p>Certifications Course: Pursuing leadership academic skills including academic and project responsibilities. Focusing on emerging technologies and industry best practices to stay ahead of market trends.</p>
+        <div class="job-tags">
+          <div class="job-tag">COURSES</div>
+          <div class="job-tag">TRAINING</div>
+          <div class="job-tag">STUDIES</div>
+        </div>
+      </article>
+
+      <article class="journey-item" tabindex="0" aria-labelledby="job4title">
+        <h3 id="job4title">PROFESSIONAL DATA ANALYST</h3>
+        <p>I embarked on my journey into data analytics driven by a passion for uncovering insights hidden within complex datasets. As a Data Analyst, I specialize in transforming raw information into meaningful narratives that guide strategic decisions.</p>
+        <div class="job-tags">
+          <div class="job-tag">DATA CLEANING & PREPARATION</div>
+          <div class="job-tag">STATISTICAL ANALYSIS & MODELING</div>
+          <div class="job-tag">VISUALIZATION & REPORTING</div>
+          <div class="job-tag">BUSINESS INTELLIGENCE</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Let's Connect Section -->
+  <section id="let-connect" class="container" aria-label="Let's Connect">
+    <h2 class="title">LET’S CONNECT</h2>
+    <div class="content">
+      <p>Ready to contribute to your team’s success through innovative marketing strategies and emerging AI technologies.</p>
+      <p class="contact-info" aria-label="Phone Number">Call: +91 8318276922</p>
+      <p class="contact-info" aria-label="Email Address">Email: <a href="mailto:prakharsharmawork1@gmail.com" style="color:#e91e63;">prakharsharmawork1@gmail.com</a></p>
+      <p class="contact-info" aria-label="Location">Location: Lucknow, Uttar Pradesh(INDIA)</p>
+      <div class="btn-group">
+        <button class="btn-primary" aria-label="Contact a consultation">CONTACT A CONSULTATION</button>
+        <button class="btn-secondary" aria-label="Download full resume">DOWNLOAD FULL RESUME</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Get In Touch Form -->
+  <section id="get-in-touch" class="container" aria-label="Get In Touch Contact Form">
+    <h2>GET IN TOUCH</h2>
+    <p>Kindly fill the form and I will reach back to discuss your project or career needs!</p>
+    <form action="#" method="POST" novalidate>
+      <div>
+        <label for="name">Name *</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required />
+      </div>
+      <div>
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" placeholder="Your email address" required />
+      </div>
+      <div class="full-width">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="+91 9876543210" />
+      </div>
+      <div class="full-width">
+        <label for="interest">Interest</label>
+        <select id="interest" name="interest">
+          <option value="" disabled selected>Select an option</option>
+          <option value="marketing">Marketing Services</option>
+          <option value="development">Full Stack Development</option>
+          <option value="consultation">Consultation</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="full-width">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Type your message here..." rows="5"></textarea>
+      </div>
+      <div class="checkbox-group full-width" aria-label="Subscription options">
+        <label><input type="checkbox" name="newsletter" value="subscribe" /> I would like to receive newsletters.</label>
+        <label><input type="checkbox" name="policy" value="accept" /> I agree with the policy.</label>
+      </div>
+      <button type="submit" class="submit-btn">SEND MESSAGE</button>
+    </form>
+
+
+    <div id="thank-you" style="
+      display:none; 
+      margin-top:15px; 
+      padding:15px; 
+      background:#e91e63; 
+      color:#fff; 
+      font-weight:bold; 
+      border-radius:5px;
+      text-align:center;
+      transform: translateY(-20px);
+      opacity:0;
+      transition: all 0.5s ease;
+    ">
+    ✅ Your message has been sent. Thank you!
+  </div>
+
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-logo">PRAKHAR SHARMA</div>
+    <nav class="footer-nav" aria-label="Footer Navigation">
+      <div>
+        <h4>NAVIGATION</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#expertise">Expertise</a></li>
+          <li><a href="#journey">Experience</a></li>
+          <li><a href="#let-connect">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <ul>
+          <li>+91 8318276922</li>
+          <li><a href="mailto:prakharsharmawork1@gmail.com">prakharsharmawork1@gmail.com</a></li>
+          <li>Lucknow, Uttar Pradesh(INDIA)</li>
+        </ul>
+      </div>
+    </nav>
+    <div class="small-text">&copy; 2024 Prakhar Sharma. All rights reserved.</div>
+  </footer>
+
+   <!-- === JavaScript injected here === -->
+  <script>
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth"
+        });
+      });
+    });
+
+    // Resume download buttons
+    document.querySelectorAll('[aria-label="Download Resume"], [aria-label="Download full resume"]').forEach(btn => {
+      btn.addEventListener("click", () => {
+        window.open("items/Prakhar_Sharma_Resume.pdf", "_blank"); // replace with actual resume file
+      });
+    });
+
+    // Hire Me Now button -> scroll to contact form
+    const hireBtn = document.querySelector('[aria-label="Hire Me"]');
+    if (hireBtn) {
+      hireBtn.addEventListener("click", () => {
+        document.querySelector("#get-in-touch").scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    // Call icon functionality
+    const callIcon = document.querySelector('div[title="Call Prakhar"]');
+    if (callIcon) {
+      callIcon.addEventListener("click", () => {
+        window.location.href = "tel:+918318276922";
+      });
+    }
+
+    // Contact a consultation button scroll
+    const consultBtn = document.querySelector('[aria-label="Contact a consultation"]');
+    if (consultBtn) {
+      consultBtn.addEventListener("click", () => {
+        document.querySelector("#get-in-touch").scrollIntoView({ behavior: "smooth" });
+      });
+    }
+
+    // Form validation
+    const form = document.querySelector("form");
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        if (!name || !email) {
+          e.preventDefault();
+          alert("Please fill in all required fields (Name & Email).");
+        }
+      });
+    }
+      // Resume download buttons
+    // Resume download buttons
+    document.querySelectorAll('[aria-label="Download Resume"], [aria-label="Download full resume"]').forEach(btn => {
+      btn.addEventListener("click", () => {
+        window.open("items/Prakhar_Sharma_Resume.pdf", "_blank"); // replace with actual resume file
+      });
+    });
+
+
+
+
+
+
+// WhatsApp submission logic using the already declared 'form' variable
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent default form submission
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    const interest = form.interest.value || "Not selected";
+    const message = form.message.value.trim();
+
+    if (!name || !email) {
+      alert("Please fill in all required fields (Name & Email).");
+      return;
+    }
+
+    // Construct WhatsApp message
+    const whatsappNumber = "918318276922"; // your mobile number with country code
+    let whatsappMessage = `Hello Prakhar Sharma,%0A%0A` +
+                          `Name: ${name}%0A` +
+                          `Email: ${email}%0A` +
+                          `Phone: ${phone || "Not provided"}%0A` +
+                          `Interest: ${interest}%0A` +
+                          `Message: ${message}`;
+
+    // Open WhatsApp link
+    window.open(`https://wa.me/${+918318276922}?text=${whatsappMessage}`, "_blank");
+  });
+}
+
+
+</script>
+
+</body>
+</html>
