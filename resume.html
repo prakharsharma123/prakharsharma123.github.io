@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prakhar Sharma — Resume</title>
+  <style>
+    /* ---------- Base ---------- */
+    :root{
+      --accent:#176f3e;
+      --muted:#6b7280;
+      --bg:#f9fafb;
+      --paper:#ffffff;
+      --max-width:900px;
+      --gap:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+    }
+
+    /* ---------- Card / Layout ---------- */
+    .resume {
+      width:100%;
+      max-width:var(--max-width);
+      background:var(--paper);
+      border-radius:10px;
+      box-shadow:0 6px 30px rgba(15,23,42,0.08);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:var(--gap);
+      padding:28px;
+    }
+
+    /* Mobile layout */
+    @media (max-width:860px){
+      .resume{grid-template-columns:1fr; padding:18px}
+    }
+
+    /* ---------- Left column (sidebar) ---------- */
+    .side {
+      padding-right:8px;
+      border-right:1px solid #eef2f7;
+    }
+
+    /* Photo / Profile Image */
+    .photo {
+      width: 100%;
+      max-width: 180px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      background: #28a745;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .name {
+      font-size:1.4rem;
+      font-weight:700;
+      margin:0 0 6px 0;
+    }
+    .title {
+      margin:0;
+      color:var(--muted);
+      font-weight:600;
+      font-size:0.95rem;
+    }
+
+    .contact, .section {
+      margin-top:22px;
+    }
+    .contact a, .contact p{
+      display:block;
+      color:#111827;
+      text-decoration:none;
+      margin:6px 0;
+      font-size:0.95rem;
+    }
+    .contact .muted{color:var(--muted); font-size:0.85rem}
+
+    .divider{
+      height:1px;
+      background:#f1f5f9;
+      margin:18px 0;
+      border-radius:2px;
+    }
+
+    .skill {
+      margin-bottom:12px;
+    }
+    .skill .label{display:flex;justify-content:space-between;font-size:0.88rem;margin-bottom:6px;color:var(--muted)}
+    .bar {
+      background:#eef2f7;
+      border-radius:999px;
+      height:10px;
+      overflow:hidden;
+    }
+    .bar > span{
+      display:block;height:100%; background:linear-gradient(90deg,var(--accent), #3bb96a);
+      border-radius:999px;
+    }
+
+    .edu-item, .cert-item {
+      margin-bottom:12px;
+      font-size:0.93rem;
+    }
+    .muted-date { color:var(--muted); font-size:0.85rem }
+
+    /* ---------- Right column (content) ---------- */
+    .content { padding-left:12px; }
+    .summary {
+      font-size:1rem;
+      line-height:1.6;
+      color:#111827;
+      margin:0 0 12px 0;
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .section-title h3{
+      margin:0;
+      font-size:1.05rem;
+      color:var(--accent);
+      letter-spacing:0.2px;
+    }
+
+    .job {
+      margin-bottom:18px;
+    }
+    .job h4 { margin:0; font-size:1rem; }
+    .job .company { color:var(--muted); font-size:0.92rem; margin-bottom:6px}
+    .job .desc { font-size:0.95rem; color:#374151; line-height:1.5; margin-top:8px; }
+
+    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+
+    /* print button */
+    .controls {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:6px;
+    }
+    .btn {
+      padding:8px 14px;
+      background:var(--accent);
+      color:white;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:600;
+      border:0;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      box-shadow:0 6px 18px rgba(34,197,94,0.12);
+    }
+    .btn.ghost {
+      background:transparent;
+      color:var(--accent);
+      border:1px solid #e6f0e9;
+      box-shadow:none;
+    }
+
+    /* small meta */
+    .meta { color:var(--muted); font-size:0.88rem }
+
+    /* ---------- Print Styles ---------- */
+    @media print {
+      body{padding:0; background:white}
+      .resume{box-shadow:none;border-radius:0; grid-template-columns: 1fr 1fr; padding:12mm; max-width:100%}
+      .side{border-right:1px solid #eee}
+      .btn, .controls { display:none }
+      .photo { height:120px }
+      .blog { display:none }
+      @page { size: A4 portrait; margin:12mm }
+    }
+
+    /* utility */
+    .small { font-size:0.9rem; color:var(--muted) }
+    .right { text-align:right }
+  </style>
+</head>
+<body>
+  <article class="resume" aria-label="Resume of Prakhar Sharma">
+    <!-- LEFT / SIDEBAR -->
+    <aside class="side" role="complementary">
+      <div class="photo">
+        <img src="images/WhatsApp Image 2025-09-21 at 01.15.35_d80980b9.jpg" alt="Prakhar Sharma">
+      </div>
+
+      <div>
+        <p class="name">Prakhar Sharma</p>
+        <p class="title">Full Stack Developer · Data Analyst</p>
+
+        <div class="contact" aria-label="Contact information">
+          <p class="muted small">Contact</p>
+          <p><strong>Email:</strong> <a href="mailto:prakharsharmaworkl@gmail.com">prakharsharmaworkl@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+918318269222">+91 83182 69222</a></p>
+          <p><strong>Location:</strong> Lucknow, India</p>
+          <div class="divider" role="separator"></div>
+
+          <p class="muted small">Links</p>
+          <p><a href="https://github.com/prakharsharma123" target="_blank" rel="noopener">github.com/prakharsharma123</a></p>
+          <p><a href="https://www.linkedin.com/in/prakhar-sharma-06april/" target="_blank" rel="noopener">linkedin.com/in/prakhar-sharma-06april</a></p>
+        </div>
+
+        <div class="divider" role="separator"></div>
+
+        <div class="section" aria-labelledby="skills-heading">
+          <p id="skills-heading" class="muted small">Technical Skills</p>
+
+          <div class="skill">
+            <div class="label"><span>Python</span><span class="small">90%</span></div>
+            <div class="bar" aria-hidden="true"><span style="width:90%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="label"><span>HTML / CSS / JavaScript</span><span class="small">85%</span></div>
+            <div class="bar"><span style="width:85%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="label"><span>Data Analysis</span><span class="small">80%</span></div>
+            <div class="bar"><span style="width:80%"></span></div>
+          </div>
+
+          <div class="skill">
+            <div class="label"><span>MySQL / Power BI</span><span class="small">75%</span></div>
+            <div class="bar"><span style="width:75%"></span></div>
+          </div>
+          
+          <div class="skill">
+            <div class="label"><span>MERN Stack</span><span class="small">70%</span></div>
+            <div class="bar"><span style="width:70%"></span></div>
+          </div>
+        </div>
+
+        <div class="divider" role="separator"></div>
+
+        <div class="section">
+          <p class="muted small">Education</p>
+          <div class="edu-item">
+            <strong>Bachelor of Computer Applications</strong>
+            <div class="muted-date">Maharishi University of Information Technology · Pursuing (Last Year)</div>
+          </div>
+
+          <div class="edu-item">
+            <strong>Higher Secondary (12th Grade)</strong>
+            <div class="muted-date">St. Mary's School, Lucknow · 2023</div>
+          </div>
+          
+          <div class="edu-item">
+            <strong>Secondary (10th Grade)</strong>
+            <div class="muted-date">St. Mary's School, Lucknow · 2021</div>
+          </div>
+        </div>
+        
+        <div class="divider" role="separator"></div>
+        
+        <div class="section">
+          <p class="muted small">Soft Skills</p>
+          <div class="small" style="line-height:1.5; margin-top:8px">
+            Communication & Collaboration<br>
+            Problem-Solving<br>
+            Adaptability<br>
+            Critical Thinking<br>
+            Time Management
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT / MAIN -->
+    <div class="content" role="main">
+      <header>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+          <div>
+            <p class="meta">Resume — Full Stack Developer & Data Analyst</p>
+            <h2 style="margin:6px 0 8px 0">Career Objective</h2>
+          </div>
+
+          <div class="controls">
+            <button class="btn" onclick="window.print()" title="Print or save as PDF">🖨 Print / Save</button>
+            <a class="btn ghost" href="#" onclick="location.href='mailto:123prakharsharma@gmail.com?subject=Opportunity'">✉ Contact</a>
+          </div>
+        </div>
+
+        <p class="summary">
+          Aspiring data-driven professional seeking a dynamic role where I can apply my skills in full stack development, data analysis, and technical strategy to solve real-world problems. Committed to continuous learning and delivering impactful solutions through innovation, collaboration, and structured thinking.
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="experience-heading">
+        <div class="section-title">
+          <h3 id="experience-heading">Internships & Workshops</h3>
+        </div>
+
+        <div class="job" aria-label="MERN Stack Internship">
+          <h4>MERN Stack / Web Development</h4>
+          <div class="company">Current Internship — <span class="muted-date">Present</span></div>
+          <div class="desc">
+            Gaining practical experience in MongoDB, Express.js, React.js, and Node.js for full-stack web development.
+          </div>
+        </div>
+
+        <div class="job">
+          <h4>Data Analyst</h4>
+          <div class="company">Junior Intern — <span class="muted-date">Past Experience</span></div>
+          <div class="desc">
+            Participated as a junior intern in the field of Data Analysis, working with data processing and visualization tools.
+          </div>
+        </div>
+        
+        <div class="job">
+          <h4>AI & Cloud Computing</h4>
+          <div class="company">Workshop Participant — <span class="muted-date">Past Experience</span></div>
+          <div class="desc">
+            Attended sessions on Human-Computer Interaction using AI and gained knowledge in Data Science using Python on Cloud Computing, AI/ML & Deep Learning.
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="projects-heading">
+        <div class="section-title">
+          <h3 id="projects-heading">Projects</h3>
+        </div>
+
+        <div class="projects">
+          <div style="border:1px solid #eef2f7;padding:12px;border-radius:8px;">
+            <strong>Image Upload App</strong>
+            <div class="small muted">Node.js, Express, Multer</div>
+            <p style="margin:8px 0 0 0;font-size:0.95rem">Built a server-side app to upload and display images on a webpage using Express and Multer.</p>
+          </div>
+
+          <div style="border:1px solid #eef2f7;padding:12px;border-radius:8px;">
+            <strong>Sales Performance Dashboard</strong>
+            <div class="small muted">Power BI, Tableau</div>
+            <p style="margin:8px 0 0 0;font-size:0.95rem">Analyzed sales data and visualized KPIs using Power BI or Tableau.</p>
+          </div>
+          
+          <div style="border:1px solid #eef2f7;padding:12px;border-radius:8px;">
+            <strong>Fraud Detection System</strong>
+            <div class="small muted">Python, Machine Learning</div>
+            <p style="margin:8px 0 0 0;font-size:0.95rem">Built a classification model to detect fraudulent transactions.</p>
+          </div>
+          
+          <div style="border:1px solid #eef2f7;padding:12px;border-radius:8px;">
+            <strong>Portfolio Website</strong>
+            <div class="small muted">HTML, CSS, JavaScript</div>
+            <p style="margin:8px 0 0 0;font-size:0.95rem">Showcased skills, resume, and projects with responsive design.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="education-heading">
+        <div class="section-title">
+          <h3 id="education-heading">Additional Information</h3>
+        </div>
+
+        <div class="edu-item">
+          <strong>Languages Known</strong>
+          <div class="muted-date">English, Hindi</div>
+        </div>
+        
+        <div class="edu-item">
+          <strong>Hobbies & Interests</strong>
+          <div class="muted-date">Visual Creativity, Data Challenges & Hackathons, Tech Exploring, Societal Impact & Governance</div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="contact-heading">
+        <div class="section-title">
+          <h3 id="contact-heading">Declaration</h3>
+        </div>
+        <p class="small">I hereby declare that the information provided above is true and correct to the best of my knowledge and belief.</p>
+        <p style="margin-top:8px"><strong>Signature:</strong> Prakhar Sharma</p>
+      </section>
+
+      <footer style="margin-top:22px;border-top:1px solid #f1f5f9;padding-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div class="small">© 2024 Prakhar Sharma</div>
+          <div class="small muted">Last updated: Sep 2024</div>
+        </div>
+      </footer>
+    </div>
+  </article>
+</body>
+</html>
