@@ -354,6 +354,60 @@
       background-color: #e91e63;
       color: #000;
     }
+
+    /* Projects Section */
+#projects {
+  border-top: 1px solid #222;
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin: 40px auto;
+  max-width: 960px;
+}
+
+.project-card {
+  background: #111;
+  padding: 25px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  text-align: left;
+  transition: border-color 0.3s ease;
+}
+.project-card:hover {
+  border-color: #e91e63;
+}
+.project-card h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+.project-card p {
+  font-size: 0.9rem;
+  color: #bbb;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+.project-btn {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 900;
+  padding: 10px 18px;
+  border: 2px solid #e91e63;
+  border-radius: 3px;
+  color: #e91e63;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.project-btn:hover {
+  background-color: #e91e63;
+  color: #000;
+}
+
     /* Let’s Connect Section */
     #let-connect {
       border-top: 1px solid #222;
@@ -1023,4 +1077,5 @@ if (form) {
 
 </body>
 </html>
+
 
